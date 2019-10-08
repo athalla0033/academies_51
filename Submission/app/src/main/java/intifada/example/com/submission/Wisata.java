@@ -1,7 +1,10 @@
 package intifada.example.com.submission;
 
-public class Wisata {
-    private String name, remarks, photo;
+import java.io.Serializable;
+
+public class Wisata implements Serializable {
+    private String name, remarks;
+    private int photo;
 
     public String getName() { return name; }
 
@@ -11,7 +14,7 @@ public class Wisata {
 
     public void setRemarks(String remarks) { this.remarks = remarks; }
 
-    public String getPhoto() { return photo; }
+    public int getPhoto() { return photo; }
 
-    public void setPhoto(String photo) { this.photo = photo; }
+    public void setPhoto(int photo) { this.photo = photo; }
 }

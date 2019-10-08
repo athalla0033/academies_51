@@ -5,17 +5,16 @@ import java.util.ArrayList;
 public class WisataData {
 
     public static String[][] data = new String[][]{
-            {"Museum Gunung Merapi", "Mendalami sejarah dan kedahsyatan Gunung Merapi di Museum Gunung Merapi", "http://192.168.137.1/Dicoding/submission/1-1-MuseumGunungMerapi-By-ceb0l.jpg"},
-            {"Bukit Klangon", "Melihat sisi eksotik Gunung Merapi di Bukit Klangon", "http://192.168.137.1/Dicoding/submission/2-1-BukitKlangon-By-chaniiiss.jpg"},
-            {"Lava Tour Merapi", "Memeras adrenalin di Lava Tour Merapi", "http://192.168.137.1/Dicoding/submission/4-1-LavaTourMerapi-By-krisnaharja.jpg"},
-            {"The Lost World Castle", "Menilik benteng unik di kaki Merapi di The Lost World Castle", "http://192.168.137.1/Dicoding/submission/6-1-TheLostWorldCastle-By-hamenang.jpg"},
-            {"Kaliadem", "Menikmati Merapi dengan tenang di Kaliadem", "http://192.168.137.1/Dicoding/submission/7-1-Kaliadem-By-msetyantoko.jpg"},
-            {"Candi Sambisari", "Kecantikan yang tersembunyi di Candi Sambisari", "http://192.168.137.1/Dicoding/submission/11-1-CandiSambisari-By-annisadewi_delinda.jpg"},
-            {"Candi Ijo", "Candi Ijo, candi tertinggi di Jogja", "http://192.168.137.1/Dicoding/submission/14-2-CandiIjo-By-jack.jpg"},
-            {"Jogja Bay Pirates", "Bermain air di Jogja Bay Pirates Adventure Waterpark", "http://192.168.137.1/Dicoding/submission/15-1-Jogjabay.jpg"},
-            {"Blue Lagoon", "Pemandian alami di Blue Lagoon", "http://192.168.137.1/Dicoding/submission/18-1-BlueLagoon-By-iwank_markzaid.jpg"},
-            {"Green Kayen", "Green Kayen, spot wisata potensial di ConCat", "http://192.168.137.1/Dicoding/submission/19-1-GreenKayen-By-acieldt92.jpg"},
-            {"Kids Fun Park", "Kids Fun Park, surga bermain si kecil", "http://192.168.137.1/Dicoding/submission/20-3-KidsFun.jpg"}
+            {"Museum Gunung Merapi", "Mendalami sejarah dan kedahsyatan Gunung Merapi di Museum Gunung Merapi", String.valueOf( R.drawable.museumgunungmerapi)},
+            {"Bukit Klangon", "Melihat sisi eksotik Gunung Merapi di Bukit Klangon", String.valueOf( R.drawable.bukitklangon)},
+            {"Lava Tour Merapi", "Memeras adrenalin di Lava Tour Merapi", String.valueOf( R.drawable.thelostworldcastle)},
+            {"Kaliadem", "Menikmati Merapi dengan tenang di Kaliadem", String.valueOf( R.drawable.kaliadem)},
+            {"Candi Sambisari", "Kecantikan yang tersembunyi di Candi Sambisari", String.valueOf( R.drawable.candisambisari)},
+            {"Candi Ijo", "Candi Ijo, candi tertinggi di Jogja", String.valueOf( R.drawable.candiijo)},
+            {"Jogja Bay Pirates", "Bermain air di Jogja Bay Pirates Adventure Waterpark",String.valueOf(  R.drawable.jogjabay)},
+            {"Blue Lagoon", "Pemandian alami di Blue Lagoon", String.valueOf( R.drawable.bluelagoon)},
+            {"Green Kayen", "Green Kayen, spot wisata potensial di ConCat", String.valueOf( R.drawable.greenkanyen)},
+            {"Kids Fun Park", "Kids Fun Park, surga bermain si kecil", String.valueOf( R.drawable.kidsfun)}
     };
 
     /*public static String[][] data = new String[][]{
@@ -35,7 +34,7 @@ public class WisataData {
             wisata = new Wisata();
             wisata.setName(data[i][0]);
             wisata.setRemarks(data[i][1]);
-            wisata.setPhoto(data[i][2]);
+            wisata.setPhoto(Integer.parseInt(data[i][2]));
 
             list.add(wisata);
         }

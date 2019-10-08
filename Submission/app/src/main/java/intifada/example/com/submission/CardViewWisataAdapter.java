@@ -19,11 +19,13 @@ import java.util.ArrayList;
 
 public class CardViewWisataAdapter extends RecyclerView.Adapter<CardViewWisataAdapter.CardViewViewHolder>{
     private ArrayList<Wisata> listWisata;
-    private Context context;
+    private CustomOnItemClickListener listener;
 
     /*private Button btnMoveWithDataActivity;*/
 
-    public CardViewWisataAdapter(Context context) { this.context = context;}
+    public CardViewWisataAdapter(CustomOnItemClickListener listener) {
+        this.listener=listener;
+    }
 
     public ArrayList<Wisata> getListWisata() { return listWisata;}
 
@@ -38,11 +40,11 @@ public class CardViewWisataAdapter extends RecyclerView.Adapter<CardViewWisataAd
     }
 
     @Override
-    public void onBindViewHolder(CardViewViewHolder holder, int position) {
+    public void onBindViewHolder(CardViewViewHolder holder, final int position) {
 
-        Wisata p = getListWisata().get(position);
+        final Wisata p = getListWisata().get(position);
 
-        Glide.with(context)
+        Glide.with(holder.itemView.getContext())
                 .load(p.getPhoto())
                 .override(350, 550)
                 .into(holder.imgPhoto);
@@ -50,27 +52,18 @@ public class CardViewWisataAdapter extends RecyclerView.Adapter<CardViewWisataAd
         holder.tvName.setText(p.getName());
         holder.tvRemarks.setText(p.getRemarks());
 
-        holder.btnShare.setOnClickListener(new CustomOnItemClickListener(position, new CustomOnItemClickListener.OnItemClickCallback() {
-
+        holder.btnDetail.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClicked(View view, int position) {
-                Toast.makeText(context, "Share " + getListWisata().get(position).getName(), Toast.LENGTH_SHORT).show();
+            public void onClick(View v) {
+                listener.onItemClicked(p, position);
             }
-        }));
-
-        holder.btnDetail.setOnClickListener(new CustomOnItemClickListener(position, new CustomOnItemClickListener.OnItemClickCallback() {
-
-            @Override
-            public void onItemClicked(View view, int position) {
-                Toast.makeText(context, "Detail "+getListWisata().get(position).getName(), Toast.LENGTH_SHORT).show();
-            }
-        }));
+        });
 
         /*holder.btnUp.setOnClickListener(new CustomOnItemClickListener(position, new CustomOnItemClickListener.OnItemClickCallback() {
 
             @Override
             public void onItemClicked(View view, int position) {
-                Intent moveIntent = new Intent(CardViewWisataAdapter.this, TentangActivity.class);
+                Intent moveIntent = new Intent(CardViewWisataAdapter.this, DetailsActivity.class);
                 context.startActivity(moveIntent);
                 Toast.makeText(context, "UP : "+getListWisata().get(position).getName(), Toast.LENGTH_SHORT).show();
             }

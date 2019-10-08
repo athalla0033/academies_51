@@ -1,5 +1,6 @@
 package intifada.example.com.submission;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,7 +10,6 @@ import java.util.ArrayList;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 showRecyclerCardView();
                 break;
             case R.id.action_tentang:
-                showRecyclerTentang();
+                showAbout();
                 title = "Tentang";
                 break;
         }
@@ -55,13 +55,21 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void showRecyclerTentang(){
-        rvCategory.setLayoutManager(new LinearLayoutManager(this));
+    private void showAbout(){
+        Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+        startActivity(intent);
     }
 
     private void showRecyclerCardView(){
         rvCategory.setLayoutManager(new LinearLayoutManager(this));
-        CardViewWisataAdapter cardViewWisataAdapter = new CardViewWisataAdapter(this);
+        CardViewWisataAdapter cardViewWisataAdapter = new CardViewWisataAdapter(new CustomOnItemClickListener() {
+            @Override
+            public void onItemClicked(Wisata item, int position) {
+                Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
+                intent.putExtra("data", item);
+                startActivity(intent);
+            }
+        });
         cardViewWisataAdapter.setListWisata(list);
         rvCategory.setAdapter(cardViewWisataAdapter);
     }
@@ -72,5 +80,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void showSelectedWisata(Wisata wisata){
         Toast.makeText(this, "Kamu memilih "+wisata.getName(), Toast.LENGTH_SHORT).show();
+    }
+
+    private void share (Wisata wisata) {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, ""+wisata.getName());
+        sendIntent.setType("text/plain");
+
+        Intent shareIntent = Intent.createChooser(sendIntent, null);
+        startActivity(shareIntent);
+
     }
 }
